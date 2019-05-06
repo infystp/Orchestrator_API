@@ -105,7 +105,7 @@ def processRequest(req):
         print('Start Job Status: ',respStartJobs.status_code)
         print('Start job Response',respStartJobs.text)
         
-        speech = "Response JSON: "+respStartJobs.text + "Response Status: "+ respStartJobs.status_code
+        speech = "Response Status: "+ respStartJobs.status_code
         
         return {
             "speech": speech,
