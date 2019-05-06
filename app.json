@@ -1,0 +1,6 @@
+{
+  "name": "Dialogflow Orchestrator API BOT",
+  "description": "Dialogflow webhook demonstration",
+  "repository": "https://github.com/BinduGundlapalli/WeatherApi/",
+  "keywords": ["dialogflow", "Open Weather Map","pyowm","Weather"]
+}
