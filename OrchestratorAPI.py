@@ -40,9 +40,9 @@ def processRequest(req):
     parameters = result.get("parameters")
     print(parameters)
     
-    processId = parameters.get("number")
+    processId = parameters.get("processId")
     
-    processKey = parameters.get("any")
+    processKey = parameters.get("ProcessName")
     
     #Authentication request to get the access token
     urlgetAuthenticationToken = 'https://platform.uipath.com/api/Account/Authenticate'
