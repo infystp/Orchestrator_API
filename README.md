@@ -1,7 +1,7 @@
 # Orchestrator_bot
 Orchestrator Bot deployed in dialogflow
 ## Dialogflow Webhook Orchestrator bot implementation in Python
-This service takes `geo-city` as a param from Dialogflow JSON request and find the weather for the provided city using Open Weather Map and returns a webhook response
+This service takes `Process Id` and 'Process Name' as params from Dialogflow JSON request and login to the orchestrator, runs specific job and return a webhook response
 
 More info about Dialogflow webhooks could be found here:
 [Dialogflow Webhook](https://dialogflow.com/docs/fulfillment)
@@ -16,18 +16,9 @@ More info about Dialogflow webhooks could be found here:
 * Create the intent (like weather in singapore [$geo-city] ) and enable webhook fulfillment in the intent
 * Test in your console
 # Examples
-#### weather in Avinashi
-Today the weather in Avinashi:   
-Temperature in Celsius:  
-Max temp :29.0.  
-Min Temp :29.0.  
-Temperature in Fahrenheit:  
-Max temp :84.2.  
-Min Temp :84.2.  
-Humidity :54.  
-Wind Speed :2.6  
-Latitude :11.19.  
-Longitude :77.27  
+#### start job with id {} and name {}
+Response Status:   
+ 
 
 ### Terms
 * [Google APIs Terms](https://developers.google.com/terms/).
