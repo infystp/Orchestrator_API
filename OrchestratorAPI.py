@@ -104,6 +104,37 @@ def processRequest(req):
         respStartJobs = requests.post(urlStartJobs, headers={'Content-Type':'application/json', 'Authorization': 'Bearer {}'.format(json_token)},data=json.dumps(body))
         print('Start Job Status: ',respStartJobs.status_code)
         print('Start job Response',respStartJobs.text)
+             strformatJobs = respStartJobs.text
+
+        print(respStartJobs.text)
+        print('--------------------------------------')
+        strJobs = r''+ strformatJobs +''
+        
+        json_Jobs = json.loads(strJobs)
+        
+        jsontostring_JobsValueArray = json.dumps(json_Jobs['value'])
+        str_JobsValueArray = json.loads(jsontostring_JobsValueArray)
+        print(str_JobsValueArray)
+        
+        for elements in str_JobsValueArray: 
+            jobId = elements['Id']
+            break
+        print('\n start waiting so that job will get completed')
+
+        time.sleep(60)
+        urlGetJobStatus = 'https://platform.uipath.com/odata/Jobs(' + str(jobId) + ')'
+        response = requests.get(urlGetJobStatus, headers={'Content-Type':'application/json', 'Authorization': 'Bearer {}'.format(json_token)})
+        strJobStatus = r''+ response.text +''
+        json_JobStatus = json.loads(strJobStatus)
+
+        print(json_JobStatus)
+        speech = "Response Status: "+ str(json_JobStatus['State'])
+        print(speech)
+        return {
+            "speech": speech,
+            "displayText": speech,
+            "source": "dialogflow-OrchestratorAPI"
+            }
         
         speech = "Response Status: "+ str(respStartJobs.status_code)
         
