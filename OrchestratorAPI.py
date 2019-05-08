@@ -8,6 +8,7 @@ Created on Mon May  6 11:10:35 2019
 import requests
 from flask import Flask,request,make_response
 import os,json
+import time
 
 app = Flask(__name__)
 
@@ -104,7 +105,8 @@ def processRequest(req):
         respStartJobs = requests.post(urlStartJobs, headers={'Content-Type':'application/json', 'Authorization': 'Bearer {}'.format(json_token)},data=json.dumps(body))
         print('Start Job Status: ',respStartJobs.status_code)
         print('Start job Response',respStartJobs.text)
-             strformatJobs = respStartJobs.text
+        
+        strformatJobs = respStartJobs.text
 
         print(respStartJobs.text)
         print('--------------------------------------')
