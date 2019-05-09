@@ -123,7 +123,7 @@ def processRequest(req):
             break
         print('\n start waiting so that job will get completed')
 
-        time.sleep(60)
+        #time.sleep(60)
         urlGetJobStatus = 'https://platform.uipath.com/odata/Jobs(' + str(jobId) + ')'
         response = requests.get(urlGetJobStatus, headers={'Content-Type':'application/json', 'Authorization': 'Bearer {}'.format(json_token)})
         strJobStatus = r''+ response.text +''
@@ -132,13 +132,7 @@ def processRequest(req):
         print(json_JobStatus)
         speech = "Response Status: "+ str(json_JobStatus['State'])
         print(speech)
-        return {
-            "speech": speech,
-            "displayText": speech,
-            "source": "dialogflow-OrchestratorAPI"
-            }
         
-        speech = "Response Status: "+ str(respStartJobs.status_code)
         
         return {
             "speech": speech,
