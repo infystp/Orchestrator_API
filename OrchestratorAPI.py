@@ -13,13 +13,7 @@ app = Flask(__name__)
 
 #To be modified based on the process to run
 releaseKey = None
-#processKey = 'Testing1'
-#processId = 128903
 robotId = None
-
-claimPolicy = {"PolicyNumber":98765, "ContactNumber":8765432190, "ClaimAmount":5000, "IncidentDetails":"testing from API"}
-
-json_claimPolicy = json.dumps(claimPolicy)
 
 @app.route('/webhook', methods=['POST','GET'])
 def webhook():
@@ -46,10 +40,16 @@ def processRequest(req):
         parameters = result.get("parameters")
         print(parameters)
         
-        processId = parameters.get("processId")
-        
-        processKey = parameters.get("ProcessName")
+        processId = parameters.get("processId")        
+        policyNumber = parameters.get("policyNumber")
+        contactName = parameters.get("contactName")
+        claimAmount = parameters.get("claimAmount")
+        incidentDetails = parameters.get("incidentDetails")
     
+    
+        claimPolicy = {"PolicyNumber":int(policyNumber), "ContactNumber":int(contactName), "ClaimAmount":int(claimAmount), "IncidentDetails":incidentDetails}
+
+        json_claimPolicy = json.dumps(claimPolicy)
         #Authentication request to get the access token
         urlgetAuthenticationToken = 'https://platform.uipath.com/api/Account/Authenticate'
         body = {"tenancyName": "viswanadha_parcha", "usernameOrEmailAddress": "admin", "password": "Jan@2019"}
@@ -108,7 +108,7 @@ def processRequest(req):
         
         
         releaseKey = releaseKey.strip().replace("\"","")
-        print('Release Key with Process Id {}, Process Name {} is:{} '.format(processId,processKey,releaseKey))
+        print('Release Key with Process Id {} is:{} '.format(processId,releaseKey))
         print('--------------------------------------------')
         
         #Starting job
