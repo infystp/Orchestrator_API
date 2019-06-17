@@ -40,16 +40,26 @@ def processRequest(req):
         parameters = result.get("parameters")
         print(parameters)
         
-        processId = parameters.get("processId")        
+        processId = parameters.get("processId")
+        print('processId is:',processId)
         policyNumber = parameters.get("policyNumber")
-        contactName = parameters.get("contactName")
+        print('policy no.is:',policyNumber)
+        contactNumber = parameters.get("contactNumber")
+        print('contactNumber is:',contactNumber)
         claimAmount = parameters.get("claimAmount")
+        print('claimAmount is:',claimAmount)
         incidentDetails = parameters.get("incidentDetails")
+        print('incidentDetailsis:',incidentDetails)
+        print('--------------------------------------')
     
     
-        claimPolicy = {"PolicyNumber":int(policyNumber), "ContactNumber":int(contactName), "ClaimAmount":int(claimAmount), "IncidentDetails":incidentDetails}
+        claimPolicy = {"PolicyNumber":int(policyNumber), "ContactNumber":int(contactNumber), "ClaimAmount":int(claimAmount), "IncidentDetails":incidentDetails}
+        print('claimPolicy Details:',claimPolicy)
+        print('--------------------------------------')
 
         json_claimPolicy = json.dumps(claimPolicy)
+        print('json_claimPolicy Details:',json_claimPolicy)
+        print('--------------------------------------')
         #Authentication request to get the access token
         urlgetAuthenticationToken = 'https://platform.uipath.com/api/Account/Authenticate'
         body = {"tenancyName": "viswanadha_parcha", "usernameOrEmailAddress": "admin", "password": "Jan@2019"}
@@ -86,7 +96,7 @@ def processRequest(req):
         urlGetReleaseKey = 'https://platform.uipath.com/odata/Releases'
         respRleaseKey = requests.get(urlGetReleaseKey, headers={'Content-Type':'application/json', 'Authorization': 'Bearer {}'.format(json_token)})
         
-        #Getting Correct Release Key from Collection by Process Id and Process Name
+        #Getting Correct Release Key from Collection by Process Id
         strRobots = respRleaseKey.text
         
         print(respRleaseKey.text)
