@@ -40,7 +40,7 @@ def processRequest(req):
         parameters = result.get("parameters")
         print(parameters)
         
-        processId = parameters.get("processId")
+        processId = 128903
         print('processId is:',processId)
         policyNumber = parameters.get("policyNumber")
         print('policy no.is:',policyNumber)
