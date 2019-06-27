@@ -159,7 +159,7 @@ def processRequest(req):
         json_JobStatus = json.loads(strJobStatus)
 
         print(json_JobStatus)
-        speech = "Response Status: "+ str(json_JobStatus['State'])
+        speech = "Thanks for providing the details. Your claim request has been considered! More details will be sent to your registered email."
         print(speech)
         
         
